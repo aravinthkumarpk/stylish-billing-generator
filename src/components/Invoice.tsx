@@ -83,44 +83,43 @@ const Invoice: FC<InvoiceProps> = ({
             </div>
           </div>
 
-          {/* Paid Stamp */}
-          {isPaid && (
-            <div className="relative mb-8">
-              <div className="absolute -rotate-12 text-green-600 border-4 border-green-600 rounded px-6 py-2 font-bold text-xl">
-                PAID
-              </div>
-            </div>
-          )}
-
           {/* Items Table */}
           <div className="overflow-x-auto mb-8">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-4 text-invoice-muted">Description</th>
-                  <th className="text-left py-4 text-invoice-muted">Qty</th>
-                  <th className="text-left py-4 text-invoice-muted">Unit price</th>
-                  <th className="text-left py-4 text-invoice-muted">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item, index) => (
-                  <tr key={index} className="border-b border-gray-200">
-                    <td className="py-4">
-                      <div className="font-medium">{item.description}</div>
-                      {item.details?.map((detail, idx) => (
-                        <div key={idx} className="text-sm text-invoice-muted">
-                          {detail}
-                        </div>
-                      ))}
-                    </td>
-                    <td className="py-4">{item.quantity}</td>
-                    <td className="py-4">${item.unitPrice.toFixed(2)}</td>
-                    <td className="py-4">${item.amount.toFixed(2)}</td>
+            <div className="relative">
+              {/* Paid Stamp - Moved inside the table container with absolute positioning */}
+              {isPaid && (
+                <div className="absolute right-0 top-0 -rotate-12 text-green-600 border-4 border-green-600 rounded px-6 py-2 font-bold text-xl z-10">
+                  PAID
+                </div>
+              )}
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-4 text-invoice-muted">Description</th>
+                    <th className="text-left py-4 text-invoice-muted">Qty</th>
+                    <th className="text-left py-4 text-invoice-muted">Unit price</th>
+                    <th className="text-left py-4 text-invoice-muted">Amount</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {items.map((item, index) => (
+                    <tr key={index} className="border-b border-gray-200">
+                      <td className="py-4">
+                        <div className="font-medium">{item.description}</div>
+                        {item.details?.map((detail, idx) => (
+                          <div key={idx} className="text-sm text-invoice-muted">
+                            {detail}
+                          </div>
+                        ))}
+                      </td>
+                      <td className="py-4">{item.quantity}</td>
+                      <td className="py-4">${item.unitPrice.toFixed(2)}</td>
+                      <td className="py-4">${item.amount.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* Totals */}
