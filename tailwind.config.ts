@@ -26,6 +26,8 @@ export default {
           text: "#334155",
           muted: "#64748b",
         },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
       },
       animation: {
         "fade-up": "fadeUp 0.5s ease-out forwards",
